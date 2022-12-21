@@ -1,32 +1,12 @@
-// console.log(document.all[10])
-// document.all[10].textContent = 'Hello'
-// console.log(document.images)
+// QuerySelector & QuerySelectorAll
+
+let li = document.querySelector('li:nth-child(2)')
+li.style.backgroundColor = 'green'
+document.querySelector('li:nth-child(3)').style.display = 'none'
 
 
- let headerTitle = document.getElementById('header-title')
-//  headerTitle.innerText = 'Hello'
-// headerTitle.innerHTML = '<h3>Hello H3 </h3>'
-
-// headerTitle.style.borderBottom = 'solid 3px white'
-
-// getElementByClassName :-
-
-// var items = document.getElementsByClassName('list-group-item')
-// console.log(items)
-// items[1].textContent = 'Helloo 2'
-// for(let i = 0;i<items.length;i++){
-//     items[i].style.fontWeight = 'bold'
-//     items[i].style.backgroundColor = '#f4f4f4'
-// }
-// items[2].style.backgroundColor = 'green'
-
-// getElementByTagName  :-
-
-
-var li = document.getElementsByTagName('li')
-let newLi = document.createElement('li')
-console.log(li)
-for(let i = 0;i<li.length;i++){
-    li[i].style.fontWeight = 'bold'
-    li[i].style.backgroundColor = '#f4f4f4'
+let list = document.querySelectorAll('li')
+list[1].style.backgroundColor = 'green'
+for(let i = 0;i<list.length;i++){
+    if(i%2===0)list[i].style.backgroundColor = 'green'
 }
