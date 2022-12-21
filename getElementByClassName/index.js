@@ -11,11 +11,22 @@
 
 // getElementByClassName :-
 
-var items = document.getElementsByClassName('list-group-item')
-console.log(items)
-items[1].textContent = 'Helloo 2'
-for(let i = 0;i<items.length;i++){
-    items[i].style.fontWeight = 'bold'
-    items[i].style.backgroundColor = '#f4f4f4'
+// var items = document.getElementsByClassName('list-group-item')
+// console.log(items)
+// items[1].textContent = 'Helloo 2'
+// for(let i = 0;i<items.length;i++){
+//     items[i].style.fontWeight = 'bold'
+//     items[i].style.backgroundColor = '#f4f4f4'
+// }
+// items[2].style.backgroundColor = 'green'
+
+// getElementByTagName  :-
+
+
+var li = document.getElementsByTagName('li')
+let newLi = document.createElement('li')
+console.log(li)
+for(let i = 0;i<li.length;i++){
+    li[i].style.fontWeight = 'bold'
+    li[i].style.backgroundColor = '#f4f4f4'
 }
-items[2].style.backgroundColor = 'green'
