@@ -1,5 +1,8 @@
 let form = document.getElementById('addForm')
 let itemList = document.getElementById('items')
+itemList.innerHTML = localStorage.getItem('itemList') || itemList.innerHTML 
+// itemList = localStorage.getItem('itemList') ||document.getElementById('items')
+console.log(localStorage.getItem('itemList'))
 let items = itemList.getElementsByTagName('li')
     let arr = Array.from(items)
 // Form submit event
@@ -13,41 +16,44 @@ form.addEventListener('submit', (e)=>{
     span.className = 'ml-3'
     span.innerText = desc
 
-    console.log(arr)
-    let text = newItem.value.toLowerCase()
-    arr.forEach(function(item){
-        let itemName = item.firstChild.textContent
-        if(itemName.toLowerCase().indexOf(text) != -1) {
-            item.append(desc)
-        }
-        else{
-            li.append(span)
-
-        }
-    })
-
-
+    
     // create new li element
     let li = document.createElement('li')
     li.className = 'list-group-item'
     li.appendChild(document.createTextNode(newItem.value))
     
-    // create delete button
-    let btn = document.createElement('button')
-    btn.className = 'btn btn-danger btn-sm float-right delete'
-    btn.appendChild(document.createTextNode('X'))
+let c = 1
+    // console.log(arr)
+    let text = newItem.value.toLowerCase()
+    arr.forEach(function(item){
+        let itemName = item.firstChild.textContent
+        if(itemName.toLowerCase().indexOf(text) != -1) {
+            item.append(desc)
+            c = 0
+        }
+    })
 
-    // create edit button
-    let edit = document.createElement('button')
-    edit.className = 'btn btn-primary float-right btn-sm mr-3'
-    edit.innerText='EDIT'
-
+if(c == 1){
+     // create delete button
+     let btn = document.createElement('button')
+     btn.className = 'btn btn-danger btn-sm float-right delete'
+     btn.appendChild(document.createTextNode('X'))
+ 
+     // create edit button
+     let edit = document.createElement('button')
+     edit.className = 'btn btn-primary float-right btn-sm mr-3'
+     edit.innerText='EDIT'
+ 
+    
+     li.appendChild(btn)
+     li.appendChild(edit)
+     li.append(span)
+     itemList.appendChild(li)
+}
    
-    li.appendChild(btn)
-    li.appendChild(edit)
 
-
-    itemList.appendChild(li)
+    // console.log(JSON.stringify(itemList))
+    localStorage.setItem('itemList',itemList.innerHTML)
 })
 
 // delete event
@@ -57,6 +63,8 @@ itemList.addEventListener('click',(e)=>{
         if(confirm('Are you sure?')){
             let li= e.target.parentElement
             itemList.removeChild(li)
+
+            localStorage.setItem('itemList',itemList.innerHTML)
         }
     }
 })
