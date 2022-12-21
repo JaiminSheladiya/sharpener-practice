@@ -1,48 +1,40 @@
-let li = document.querySelector('#items')
+let form = document.getElementById('addForm')
+let itemList = document.getElementById('items')
 
-// parentNode
-// li.parentNode.style.backgroundColor = '#f4f4f4'
+// Form submit event
+// add item
+form.addEventListener('submit', (e)=>{
+    e.preventDefault()
+    let newItem = document.getElementById('item')
 
-// parentElement
-// li.parentElement.style.backgroundColor = '#f4f4f4'
+    // create new li element
+    let li = document.createElement('li')
+    li.className = 'list-group-item'
+    li.appendChild(document.createTextNode(newItem.value))
+    
+    // create delete button
+    let btn = document.createElement('button')
+    btn.className = 'btn btn-danger btn-sm float-right delete'
+    btn.appendChild(document.createTextNode('X'))
 
-// childNodes
+    // create edit button
+    let edit = document.createElement('button')
+    edit.className = 'btn btn-primary float-right btn-sm mr-3'
+    edit.innerText='EDIT'
+    li.appendChild(btn)
+    li.appendChild(edit)
 
-// console.log(li.childNodes)
-// console.log(li.children)
-// li.children[1].style.color='yellow'
+    itemList.appendChild(li)
+})
 
-// firstChild
-// console.log(li.firstChild)
-// firstElementChild
-// console.log(li.firstElementChild)
-// li.firstElementChild.textContent = 'Hello 1'
+// delete event
 
-// lastChild
-// console.log(li.lastChild)
-// lastElementChild
-// console.log(li.lastElementChild)
-// li.lastElementChild.textContent = 'Hello last'
+itemList.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you sure?')){
+            let li= e.target.parentElement
+            itemList.removeChild(li)
+        }
+    }
+})
 
-// nextSibling
-// console.log(li.nextSibling)
-// nextElementSibling
-// console.log(li.nextElementSibling)
-
-// previousSibling
-// console.log(li.previousSibling)
-// console.log(li.previousElementSibling)
-// li.previousElementSibling.style.color = 'red'
-
-// createElement
-
-let newDiv = document.createElement('div')
-newDiv.className = 'hello'
-newDiv.id = 'hello1'
-newDiv.setAttribute('title', 'Hello Div')
-var newDivText = document.createTextNode('Hello World')
-newDiv.appendChild(newDivText)
-let container = document.querySelector('header .container')
-let h1 = document.querySelector('header h1')
-console.log(newDiv)
-container.insertBefore(newDiv,h1)
