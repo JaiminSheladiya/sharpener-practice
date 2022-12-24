@@ -127,3 +127,47 @@ let s3  = new Student('Jasmin',21,9687316611,98.56)
 let s4  = new Student('Mickle',18,9687316611,98.56)
 let s5  = new Student('Morgan',20,9687316611,98.56)
 s5.count()
+
+// 2.2
+
+function egligibleForPlacements(){
+return ()=>{
+    if(this.boardMarks>33 && this.age>18) return true
+    return false
+}
+}
+
+let e1 = egligibleForPlacements.call(s1)()
+console.log('Elegibility',e1);
+
+// 2.3
+let arr = [s1,s2,s3,s4,s5]
+arr.forEach((e)=>{
+    if(egligibleForPlacements.call(e)) console.log('Eligible student : ',e.name)
+})
+
+
+
+// fat arrow function :-
+// 2.1
+let square = (a)=> a*a
+console.log(square(2))
+
+let mult = (a,b)=>{return a*b}
+console.log(mult(2,3))
+
+var x = function(){
+    this.val = 1
+    setTimeout(()=>{
+        this.val++
+        console.log(this.val)
+    },1)
+}
+let xx = new x()
+console.log(xx)
+
+let po = function(...n){
+    console.log(n[0])
+}
+
+po(1,2,3)
