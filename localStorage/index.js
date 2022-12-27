@@ -1,20 +1,25 @@
+
 let name = document.getElementById('name')
 let email = document.getElementById('email')
 let submit = document.getElementById('submit')
 let show = document.getElementById('show')
 
+async function getUsers(){
+let data = await axios.get('https://crudcrud.com/api/8c07ef74f0b04bb8ab1434d75213027e/users')
+await showDetails(data.data)
+}
+getUsers()
 
-let users = JSON.parse(localStorage.getItem('users')) || []
-showDetails(users)
-submit.addEventListener('click',()=>{
+submit.addEventListener('click',async ()=>{
     let obj = {name : name.value,email : email.value}
     console.log(obj)
-    users.push(obj)
-    showDetails(users)
+    await axios.post('https://crudcrud.com/api/8c07ef74f0b04bb8ab1434d75213027e/users' , obj )
+    getUsers()
 })
-console.log(users)
 
 function showDetails(users){
+    console.log(users)
+    console.log(1)
     localStorage.setItem('users',JSON.stringify(users))
     show.innerHTML = ''
     users.forEach((e,i)=> {
@@ -29,19 +34,17 @@ function showDetails(users){
         let dlt = document.createElement('button')
         edit.innerText ='EDIT'
         dlt.innerText ='DELETE'
-        deleteItem(i,dlt)
+        deleteItem(e._id,dlt)
         
         input.style.display=  'none'
         done.style.display=  'none'
         edit.addEventListener('click',()=>{
             input.style.display = 'inline'
             done.style.display = 'inline'
-            done.addEventListener('click',()=>{
-                console.log(input.value,i)
-                users.map((e,id)=>{
-                    if(id === i) e.name = input.value
-                })
-               showDetails(users)
+            done.addEventListener('click',async ()=>{
+                console.log(e._id)
+                await axios.put('https://crudcrud.com/api/8c07ef74f0b04bb8ab1434d75213027e/users/' + e._id,{name : input.value , email : e.email})
+           await getUsers()
             })
         })
 
@@ -52,11 +55,10 @@ function showDetails(users){
 
 // Delete item :-
 function deleteItem(i,dlt){
-    dlt.addEventListener('click',()=>{
+    dlt.addEventListener('click',async ()=>{
         console.log(i)
-        let newUsers = users.filter((e,id)=> id!=i )
-        console.log(newUsers);
-        showDetails(newUsers)
+        await axios.delete('https://crudcrud.com/api/8c07ef74f0b04bb8ab1434d75213027e/users/' + i)
+        await getUsers()
      })
 }
 
