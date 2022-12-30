@@ -5,8 +5,9 @@ const ExpenseItem = () => {
   return (
     <>
       <h2>Expense Item</h2>
-      <Expense />
-      <Expense />
+      <Expense item={["Food", 10]} />
+      <Expense item={["Petrol", 100]} />
+      <Expense item={["Movies", 200]} />
     </>
   );
 }
