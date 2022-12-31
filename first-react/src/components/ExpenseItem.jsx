@@ -1,15 +1,20 @@
-import React from 'react'
-import Expense from './Expense'
-
+import React from "react";
+import Expense from "./Expense";
+import "./ExpenseItem.css";
 const ExpenseItem = () => {
-  return (
-    <>
-      <h2>Expense Item</h2>
-      <Expense item={["Food", 10]} />
-      <Expense item={["Petrol", 100]} />
-      <Expense item={["Movies", 200]} />
-    </>
-  );
-}
+  const expenseDate = new Date(2021, 2, 28);
+  const expenseTitle = "Car Insurance";
+  const expenseAmount = 294.67;
 
-export default ExpenseItem
+  return (
+    <div className="expense-item">
+      <div>{expenseDate.toDateString()}</div>
+      <div className="expense-item__description">
+        <h2>{expenseTitle}</h2>
+        <div className="expense-item__price">$ {expenseAmount}</div>
+      </div>
+    </div>
+  );
+};
+
+export default ExpenseItem;
