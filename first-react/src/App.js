@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
       {expenses.map((e) =>  
-          <ExpenseItem
+          <ExpenseItem key={e.id}
             title={e.title}
             amount={e.amount}
             date={e.date}
