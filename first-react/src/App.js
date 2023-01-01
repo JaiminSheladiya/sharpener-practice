@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 import { useState } from "react";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
   let [expenses,setExpenses] = useState([
@@ -42,8 +43,18 @@ const App = () => {
     
   }
 
+  function addItem(item) {
+    // expenses.push(item);
+    item.id = `e${expenses.length + 1}`
+    item.amount = +(item.amount)
+    let newArr  = [...expenses  ,item]
+    setExpenses(newArr)
+  }
+
+
   return (
     <div className="App">
+      <NewExpense addItem={addItem} />
       {expenses.map((e) => (
         <ExpenseItem
           key={e.id}
