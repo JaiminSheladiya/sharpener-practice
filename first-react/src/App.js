@@ -5,6 +5,7 @@ import { useState } from "react";
 import NewExpense from "./components/NewExpense/NewExpense";
 import ExpensesFilter from "./components/Expenses/ExpensesFilter";
 import Expenses from "./components/Expenses/Expenses";
+import ExpensesChart from "./components/Expenses/ExpensesChart";
 
 const App = () => {
   const initialValue = [
@@ -74,6 +75,7 @@ const App = () => {
         selected={filteredYear}
         filterChangeHandler={filterChangeHandler}
       />
+      <ExpensesChart expenses={filteredItems} />
       {filteredItems.length === 0 ? (
         <h2>No expense found.</h2>
       ) : (
