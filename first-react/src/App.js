@@ -72,7 +72,15 @@ const App = () => {
         selected={filteredYear}
         filterChangeHandler={filterChangeHandler}
       />
-      <Expenses expenses={filteredItems} deleteItem={deleteItem} />
+      {filteredItems.length === 0 ? (
+        <h2>No expense found.</h2>
+      ) : (
+        <Expenses expenses={filteredItems} deleteItem={deleteItem} />
+      )}
+
+      {filteredItems.length == 1 && (
+        <p>Only single Expense here. Please add more...</p>
+      )}
     </div>
   );
 }
