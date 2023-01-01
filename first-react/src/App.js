@@ -3,6 +3,8 @@ import "./App.css";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 import { useState } from "react";
 import NewExpense from "./components/NewExpense/NewExpense";
+import ExpensesFilter from "./components/Expenses/ExpensesFilter";
+import Expenses from "./components/Expenses/Expenses";
 
 const App = () => {
   let [expenses,setExpenses] = useState([
@@ -36,6 +38,11 @@ const App = () => {
     },
   ])
   
+  const [filteredYear, setFilteredYear] = useState("2020");
+
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+  };
 
   function deleteItem(id) {
     console.log(id)
@@ -55,17 +62,11 @@ const App = () => {
   return (
     <div className="App">
       <NewExpense addItem={addItem} />
-      {expenses.map((e) => (
-        <ExpenseItem
-          key={e.id}
-          title={e.title}
-          amount={e.amount}
-          date={e.date}
-          LocationOfExpenditure={e.location}
-          deleteItem={deleteItem}
-          id={e.id}
-        />
-      ))}
+      <ExpensesFilter
+        selected={filteredYear}
+        onChangeFilter={filterChangeHandler}
+      />
+      <Expenses expenses={expenses} deleteItem={ deleteItem} />
     </div>
   );
 }
