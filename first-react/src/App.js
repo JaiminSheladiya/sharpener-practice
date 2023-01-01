@@ -7,7 +7,7 @@ import ExpensesFilter from "./components/Expenses/ExpensesFilter";
 import Expenses from "./components/Expenses/Expenses";
 
 const App = () => {
-  let [expenses,setExpenses] = useState([
+  const initialValue = [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -36,25 +36,31 @@ const App = () => {
       date: new Date(2021, 5, 12),
       location: "Ahmedabad",
     },
-  ])
+  ];
+  let [expenses,setExpenses] = useState(initialValue)
   
   const [filteredYear, setFilteredYear] = useState("2020");
-
+  const [filteredItems,setFilteredItems] = useState(initialValue)
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
+    // setExpenses(initialValue)
+    setFilteredItems(expenses.filter(
+      (e) => e.date.getFullYear() == filteredYear
+    ))
+    // console.log(filteredItems)
+    // setExpenses(filteredItems)
   };
 
   function deleteItem(id) {
-    console.log(id)
+ 
    setExpenses(expenses.filter((el) => el.id != id)); 
     
   }
 
   function addItem(item) {
-    // expenses.push(item);
     item.id = `e${expenses.length + 1}`
     item.amount = +(item.amount)
-    let newArr  = [...expenses  ,item]
+    let newArr  = [item,...expenses ]
     setExpenses(newArr)
   }
 
@@ -64,9 +70,9 @@ const App = () => {
       <NewExpense addItem={addItem} />
       <ExpensesFilter
         selected={filteredYear}
-        onChangeFilter={filterChangeHandler}
+        filterChangeHandler={filterChangeHandler}
       />
-      <Expenses expenses={expenses} deleteItem={ deleteItem} />
+      <Expenses expenses={filteredItems} deleteItem={deleteItem} />
     </div>
   );
 }
