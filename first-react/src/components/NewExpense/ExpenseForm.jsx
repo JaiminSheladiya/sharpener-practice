@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
-const ExpenseForm = ({addItem}) => {
+const ExpenseForm = ({addItem , setShow}) => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [time, setTime] = useState("");
@@ -31,7 +31,7 @@ const ExpenseForm = ({addItem}) => {
     setAmount("")
     console.log(data)
     addItem(data)
-
+    setShow(true)
   }
 
   return (

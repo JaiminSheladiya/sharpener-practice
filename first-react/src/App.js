@@ -40,6 +40,7 @@ const App = () => {
   let [expenses,setExpenses] = useState(initialValue)
   
   const [filteredYear, setFilteredYear] = useState("2020");
+  const [show,setShow] = useState(true)
   const [filteredItems,setFilteredItems] = useState(initialValue)
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
@@ -47,8 +48,6 @@ const App = () => {
     setFilteredItems(expenses.filter(
       (e) => e.date.getFullYear() == filteredYear
     ))
-    // console.log(filteredItems)
-    // setExpenses(filteredItems)
   };
 
   function deleteItem(id) {
@@ -62,12 +61,15 @@ const App = () => {
     item.amount = +(item.amount)
     let newArr  = [item,...expenses ]
     setExpenses(newArr)
+    setFilteredItems(newArr)
+    console.log(newArr)
   }
 
 
   return (
     <div className="App">
-      <NewExpense addItem={addItem} />
+      {show ? <button className="btn" onClick={() => setShow(false)}>ADD NEW EXPENSE</button> : <NewExpense addItem={addItem} setShow={setShow} />}
+
       <ExpensesFilter
         selected={filteredYear}
         filterChangeHandler={filterChangeHandler}
