@@ -1,9 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
+import { useState } from "react";
 
-const  App = () => {
-  const expenses = [
+const App = () => {
+  let [expenses,setExpenses] = useState([
     {
       id: "e1",
       title: "Toilet Paper",
@@ -32,7 +33,15 @@ const  App = () => {
       date: new Date(2021, 5, 12),
       location: "Ahmedabad",
     },
-  ];
+  ])
+  
+
+  function deleteItem(id) {
+    console.log(id)
+   setExpenses(expenses.filter((el) => el.id != id)); 
+    
+  }
+
   return (
     <div className="App">
       {expenses.map((e) => (
@@ -42,6 +51,8 @@ const  App = () => {
           amount={e.amount}
           date={e.date}
           LocationOfExpenditure={e.location}
+          deleteItem={deleteItem}
+          id={e.id}
         />
       ))}
     </div>
