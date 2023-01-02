@@ -6,7 +6,7 @@ import ShowData from './components/ShowData';
 
 function App() {
 
-  const [users, setUsers] = useState([{ username: "erer", age: "45" }]);
+  const [users, setUsers] = useState([]);
   return (
     <div className="App">
       <UserForm setUsers={setUsers} />

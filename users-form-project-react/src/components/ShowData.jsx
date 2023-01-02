@@ -3,8 +3,7 @@ import React from 'react'
 const ShowData = ({ users }) => {
     console.log(users)
   return (
-      <div className=" mt-5  text-white">
-        
+    <div className=" mt-5  text-white">
       {users.map((e, i) => (
         <div
           key={i}
@@ -12,6 +11,7 @@ const ShowData = ({ users }) => {
         >
           <h4>{e.username}</h4>
           <h4>{e.age} years old</h4>
+          <h4>{e.college}</h4>
         </div>
       ))}
     </div>
