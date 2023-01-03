@@ -1,18 +1,21 @@
 import React from 'react'
-import mealsImage from '../../assets/meals.jpg'
 import classes from './Header.module.css'
 import HeaderCartButton from './HeaderCartButton'
-
 const Header = () => {
   return (
     <>
       <header className={classes.header}>
-        <h1>ReactMeals</h1>
+        <h1>Happy Meals</h1>
         <HeaderCartButton />
       </header>
-      <div className={classes['main-image']} ><img src={mealsImage} alt='Meals image' /></div>
+      <div className={classes["main-image"]}>
+        <img
+          src="https://b.zmtcdn.com/data/pictures/chains/1/10571/63a2a5e555a05d2d52457435352038cc.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*"
+          alt="Meals image"
+        />
+      </div>
     </>
-  )
+  );
 }
 
 export default Header

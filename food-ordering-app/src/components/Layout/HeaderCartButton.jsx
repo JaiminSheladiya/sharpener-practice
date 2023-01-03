@@ -1,14 +1,15 @@
 import React from "react";
-import CartIcon from "../Cart/CartIcon";
-import './HeaderCartButton.css'
+import { BsCartCheckFill } from "react-icons/bs";
+
+import "./HeaderCartButton.css";
 const HeaderCartButton = () => {
   return (
-    <button className='button'>
-          <span className='icon'>
-              <CartIcon />
+    <button className="button">
+      <span className="icon">
+        <BsCartCheckFill style={{height : '20px' , width : '20px'}} />
       </span>
       <span>Your Cart</span>
-          <spa className='badge'>0</spa>
+      <span className="badge">0</span>
     </button>
   );
 };

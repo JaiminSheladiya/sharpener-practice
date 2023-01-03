@@ -1,5 +1,6 @@
 import React from "react";
 import './MealItem.css'
+import MealItemForm from "./MealItemForm";
 const MealItem = ({ title, desc, price }) => {
   return (
     <li className="meal">
@@ -8,7 +9,9 @@ const MealItem = ({ title, desc, price }) => {
         <div className="description">{desc}</div>
         <div className="price">{price}</div>
       </div>
-      <div></div>
+          <div>
+              <MealItemForm/>
+      </div>
     </li>
   );
 };
