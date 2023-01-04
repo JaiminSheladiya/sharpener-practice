@@ -7,8 +7,17 @@ const CartProvider = ({ children }) => {
   const addItemToCart = (item) => {
     setCartItems([...cartItems, item])
   }  
-    const removeItemFromCart = (id) => {
-        setCartItems(cartItems.filter((el)=>el!=id))
+  const removeItemFromCart = (id) => {
+  // console.log(cartItems.filter((el) => el != id));
+    setCartItems(cartItems.filter((el) => el.id != id))
+  
+  }
+  const editItem = (item, i) => {
+   let newArray =  cartItems.map((el) => {
+      if (el.id === item.id)  el.amount = +el.amount + +i
+      return el
+    })
+    setCartItems(newArray)
   }
   
   useEffect(() => {
@@ -23,6 +32,7 @@ const CartProvider = ({ children }) => {
         addItem: addItemToCart,
         removeItem: removeItemFromCart,
         setCartItems: setCartItems,
+        editItem : editItem
       }}
     >
       {children}

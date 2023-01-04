@@ -53,3 +53,33 @@
 .items > div {
   display: flex;
 }
+
+#buttons > button:first-child {
+  border: 1px solid #cd3131;
+  color: #cd3131;
+  width: 100px;
+}
+#buttons > button:first-child:hover {
+  background-color: #cd3131;
+  color: white;
+}
+#buttons > button:hover {
+  background-color: #ffa500;
+  color: white;
+}
+#buttons > button {
+  font: inherit;
+  cursor: pointer;
+  border: #ffa500;
+  border: 1px solid #ffa500;
+  color: #ffa500;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+#buttons {
+  display: flex;
+  gap: 10px;
+}
