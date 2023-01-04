@@ -2,7 +2,6 @@ import React from "react";
 import { Card } from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
 import classes from "./MealsSummary.module.css";
-
 const meals = [
   {
     id: "m1",
@@ -34,14 +33,16 @@ const AvailableMeals = () => {
   return (
     <section className={classes.meals}>
       <Card>
-        <ul>{meals.map((meal) => (
-    <MealItem
-      key={meal.id}
-      desc={meal.description}
-      price={meal.price}
-      title={meal.name}
-    />
-  ))}</ul>
+        <ul>
+          {meals.map((meal) => (
+            <MealItem
+              key={meal.id}
+              desc={meal.description}
+              price={meal.price}
+              title={meal.name}
+            />
+          ))}
+        </ul>
       </Card>
     </section>
   );

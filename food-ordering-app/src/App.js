@@ -12,10 +12,10 @@ function App() {
   return (
     <>
       {cartIsShowm && <Cart onClose={hideCartHandler} />}
-      <Header  onShowCart={showCartHandler} />
+      <Header onShowCart={showCartHandler} />
       <main>
         <Meals />
-    </main>
+      </main>
     </>
   );
 }

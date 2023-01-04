@@ -24,7 +24,7 @@
   font: inherit;
   cursor: pointer;
   background-color: transparent;
-  border: 1px solid #7a1e1e;
+  border: 1px solid #ffa500;
   padding: 0.5rem 2rem;
   border-radius: 25px;
   margin-left: 1rem;
@@ -38,10 +38,18 @@
 }
 
 .actions .button--alt {
-  color: #7a1e1e;
+  color: #ffa500;
 }
 
 .actions .button {
-  background-color: #7a1e1e;
+  background-color: #ffa500;
   color: white;
+}
+
+.items {
+  display: flex;
+  justify-content: space-between;
+}
+.items > div {
+  display: flex;
 }

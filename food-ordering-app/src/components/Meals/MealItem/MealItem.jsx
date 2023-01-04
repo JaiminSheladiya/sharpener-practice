@@ -10,7 +10,7 @@ const MealItem = ({ title, desc, price }) => {
         <div className="price">{price}</div>
       </div>
           <div>
-              <MealItemForm/>
+              <MealItemForm details={{title , price}} />
       </div>
     </li>
   );
