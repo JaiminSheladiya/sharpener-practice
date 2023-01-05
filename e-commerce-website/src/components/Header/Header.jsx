@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import {HiShoppingCart} from 'react-icons/hi'
+import CartContext from "../../store/CartContext";
 import HeadText from "./HeadText";
 const Header = () => {
+    const {cartItems,setShow} = useContext(CartContext);
+
   return (
     <>
       <header className=" d-flex p-2 justify-content-around header ">
@@ -10,11 +13,14 @@ const Header = () => {
           <button className=" btn">STORE</button>
           <button className=" btn">ABOUT</button>
         </div>
-        <div className="btn d-flex gap-2 text-white bg-gradient">
+        <div
+          onClick={() => setShow(true)}
+          className="btn d-flex gap-2 text-white bg-gradient"
+        >
           <HiShoppingCart
             style={{ height: "25px", marginTop: "2px", width: "25px" }}
           />
-          0
+          {cartItems.length}
         </div>
       </header>
       <HeadText />
