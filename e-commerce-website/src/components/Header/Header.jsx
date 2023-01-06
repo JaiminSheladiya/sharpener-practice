@@ -14,7 +14,11 @@ const Header = () => {
               HOME
             </Link>
           </button>
-          <button className=" btn">STORE</button>
+          <button className=" btn">
+            <Link to="/store" id="link">
+              STORE
+            </Link>
+          </button>
           <button className=" btn text-white">
             <Link to="/about" id="link">
               ABOUT
