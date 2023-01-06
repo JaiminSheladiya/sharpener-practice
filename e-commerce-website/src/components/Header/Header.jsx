@@ -1,17 +1,25 @@
 import React, { useContext } from "react";
-import {HiShoppingCart} from 'react-icons/hi'
+import { HiShoppingCart } from "react-icons/hi";
+import { Link } from "react-router-dom";
 import CartContext from "../../store/CartContext";
-import HeadText from "./HeadText";
 const Header = () => {
-    const {cartItems,setShow} = useContext(CartContext);
+  const { cartItems, setShow } = useContext(CartContext);
 
   return (
     <>
       <header className=" d-flex p-2 justify-content-around header ">
         <div className=" d-flex justify-content-between gap-4">
-          <button className=" btn">HOME</button>
+          <button className=" btn">
+            <Link to="/" id="link">
+              HOME
+            </Link>
+          </button>
           <button className=" btn">STORE</button>
-          <button className=" btn">ABOUT</button>
+          <button className=" btn text-white">
+            <Link to="/about" id="link">
+              ABOUT
+            </Link>
+          </button>
         </div>
         <div
           onClick={() => setShow(true)}
@@ -23,7 +31,7 @@ const Header = () => {
           {cartItems.length}
         </div>
       </header>
-      <HeadText />
+      {/* <HeadText /> */}
     </>
   );
 };
