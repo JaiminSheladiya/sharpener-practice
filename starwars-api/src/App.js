@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import MoviesList from "./components/MoviesList";
 import "./App.css";
+import NewMovieForm from "./components/NewMovieForm";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -48,6 +49,9 @@ function App() {
       {/* <section> */}
         {/* <button onClick={fetchMoviesHandler}>Fetch Movies</button> */}
       {/* </section> */}
+      <section>
+        <NewMovieForm />
+      </section>
       <section>
        {loading? <p>FETCHING MOVIES...</p> :<MoviesList movies={movies} />} 
         {!loading && error && <p>{error}</p>}
