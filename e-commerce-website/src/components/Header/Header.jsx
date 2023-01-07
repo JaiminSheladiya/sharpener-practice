@@ -24,6 +24,11 @@ const Header = () => {
               ABOUT
             </Link>
           </button>
+          <button className=" btn text-white">
+            <Link to="/ContactUs" id="link">
+              Contact Us
+            </Link>
+          </button>
         </div>
         <div
           onClick={() => setShow(true)}
