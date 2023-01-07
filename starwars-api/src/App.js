@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import MoviesList from "./components/MoviesList";
 import "./App.css";
@@ -8,7 +8,14 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const ref = useRef(true)
-  // console.log(e)
+  
+  useEffect(() => {
+    fetchMoviesHandler()
+  
+   
+  }, [])
+  
+
   async function fetchMoviesHandler() {
     setLoading(true)
     setError(null)
@@ -38,11 +45,11 @@ function App() {
 
   return (
     <React.Fragment>
+      {/* <section> */}
+        {/* <button onClick={fetchMoviesHandler}>Fetch Movies</button> */}
+      {/* </section> */}
       <section>
-        <button onClick={fetchMoviesHandler}>Fetch Movies</button>
-      </section>
-      <section>
-       {loading? <p>FETCHING...</p> :<MoviesList movies={movies} />} 
+       {loading? <p>FETCHING MOVIES...</p> :<MoviesList movies={movies} />} 
         {!loading && error && <p>{error}</p>}
         {!loading && error && ref.current && <button onClick={()=>ref.current = false}>Cancel</button>}
       </section>
