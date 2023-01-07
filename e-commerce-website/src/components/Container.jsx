@@ -1,42 +1,10 @@
 import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import CartContext from '../store/CartContext';
-
-const productsArr = [
-  {
-    title: "Colors",
-
-    price: 100,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-  },
-
-  {
-    title: "Black and white Colors",
-
-    price: 50,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-  },
-
-  {
-    title: "Yellow and Black Colors",
-
-    price: 70,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-  },
-
-  {
-    title: "Blue Color",
-
-    price: 100,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
-  },
-];
-
+import productsArr from '../productsList';
 const Container = () => {
-    const {addItem } = useContext(CartContext)
+  const { addItem } = useContext(CartContext)
+  const navigate = useNavigate()
   return (
     <>
       <h1 className=" display-1 border-bottom">The Generics</h1>
@@ -48,7 +16,14 @@ const Container = () => {
             style={{ cursor: "pointer" }}
           >
             <p>{e.title}</p>
-            <img className=" rounded-3" src={e.imageUrl} alt={e.title} />
+            <div className='img'>
+              <img
+                className="rounded-3"
+                onClick={() => navigate(`/products/${e.id}`)}
+                src={e.imageUrl}
+                alt={e.title}
+              />
+            </div>
             <p>Price : {e.price}</p>
             <button
               onClick={() => addItem(e)}
