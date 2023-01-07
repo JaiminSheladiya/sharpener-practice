@@ -21,20 +21,17 @@ function App() {
     setLoading(true)
     setError(null)
     try {
-       const res = await fetch("https://swapi.dev/api/films/");
-       const data = await res.json();
-
+       const res = await fetch(
+         "https://react-http-8f419-default-rtdb.firebaseio.com/movies.json "
+       );
+      const data = await res.json();
+      const loadedMovies = []
+      for (const key in data) {
+        loadedMovies.push({...data[key] , id : key})
+      }
+      console.log(loadedMovies)
       if(!res.ok) throw new Error('Something went wrong! ...Retrying')
-      
-       const transformedMovies = data.results.map((movieData) => {
-         return {
-           id: movieData.episode_id,
-           title: movieData.title,
-           openingText: movieData.opening_crawl,
-           releaseDate: movieData.release_date,
-         };
-       });
-       setMovies(transformedMovies);
+       setMovies(loadedMovies);
        setLoading(false);    
     } catch (error) {
       setError(error.message + ' Retrying in 5 seconds')
@@ -46,16 +43,15 @@ function App() {
 
   return (
     <React.Fragment>
-      {/* <section> */}
-        {/* <button onClick={fetchMoviesHandler}>Fetch Movies</button> */}
-      {/* </section> */}
       <section>
-        <NewMovieForm />
+        <NewMovieForm fetchMoviesHandler={fetchMoviesHandler} />
       </section>
       <section>
-       {loading? <p>FETCHING MOVIES...</p> :<MoviesList movies={movies} />} 
+        {loading ? <p>FETCHING MOVIES...</p> : <MoviesList movies={movies} />}
         {!loading && error && <p>{error}</p>}
-        {!loading && error && ref.current && <button onClick={()=>ref.current = false}>Cancel</button>}
+        {!loading && error && ref.current && (
+          <button onClick={() => (ref.current = false)}>Cancel</button>
+        )}
       </section>
     </React.Fragment>
   );
