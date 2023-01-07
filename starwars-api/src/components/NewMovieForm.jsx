@@ -36,7 +36,7 @@ const NewMovieForm = ({ fetchMoviesHandler }) => {
         },
       }
     );
-    const data = await res.json();
+
     fetchMoviesHandler();
   }
 

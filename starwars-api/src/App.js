@@ -47,7 +47,11 @@ function App() {
         <NewMovieForm fetchMoviesHandler={fetchMoviesHandler} />
       </section>
       <section>
-        {loading ? <p>FETCHING MOVIES...</p> : <MoviesList movies={movies} />}
+        {loading ? (
+          <p>FETCHING MOVIES...</p>
+        ) : (
+          <MoviesList fetchMoviesHandler={fetchMoviesHandler} movies={movies} />
+        )}
         {!loading && error && <p>{error}</p>}
         {!loading && error && ref.current && (
           <button onClick={() => (ref.current = false)}>Cancel</button>
