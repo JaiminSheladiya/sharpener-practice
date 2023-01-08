@@ -1,11 +1,12 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import { AuthContext } from '../store/AuthContext';
-
+// import {useNavigate} from 'react-router-dom'
 import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
-  const {token} = useContext(AuthContext)
+  const { token } = useContext(AuthContext)
+   const navigate = useNavigate()
   return (
     <header className={classes.header}>
       <Link to='/'>

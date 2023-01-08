@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../store/AuthContext';
 import { useNavigate } from "react-router-dom";
 import classes from './AuthForm.module.css';
@@ -9,8 +9,15 @@ const AuthForm = () => {
   let [creds,setCreds] = useState({email : '',password : ''})
   const [loading , setLoading] = useState(false)
 
- const navigate = useNavigate();
 
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (token) navigate("/profile");
+    else navigate("/auth");
+  },[token])
+
+ 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
@@ -25,7 +32,6 @@ const AuthForm = () => {
     e.preventDefault()
  setLoading(true);
     if (isLogin) {
-      
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAAXV5Vs62BDdmIhqYmBwYQ_embaTIn_o0",
       {
@@ -52,12 +58,10 @@ const AuthForm = () => {
           throw new Error(errorMessage)
         });
       }
-    }).then(data =>{setToken(data.idToken) }).catch(err=>alert(err.message))
       
-
-      
-
-      
+    }).then(data => {
+      setToken(data.idToken)
+    }).catch(err => alert(err.message))
       
 
     } else {
