@@ -6,11 +6,8 @@ import classes from './ProfileForm.module.css';
 const ProfileForm = () => {
   const { token, setToken } = useContext(AuthContext)
   console.log(token)
-  const navigate = useNavigate()
 const InputRef = useRef()
-  useEffect(() => {
-    if(!token) navigate('/auth')
-  }, [])
+
   
   function handleSubmit(e) {
     e.preventDefault()

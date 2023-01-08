@@ -5,7 +5,7 @@ import { AuthContext } from '../store/AuthContext';
 import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
-  const { token } = useContext(AuthContext)
+  const { token , setToken } = useContext(AuthContext)
    const navigate = useNavigate()
   return (
     <header className={classes.header}>
@@ -21,7 +21,11 @@ const MainNavigation = () => {
             <Link to='/profile'>Profile</Link>
           </li>
           <li>
-            <button>{token? 'Logout' : 'Login'}</button>
+            {token ? <button onClick={() => {
+              setToken(null)
+              navigate('/auth')
+            }
+            }>Logout</button> : <button onClick={() => navigate('/auth')}>Login</button>}
           </li>
         </ul>
       </nav>
