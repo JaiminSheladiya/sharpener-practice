@@ -4,7 +4,8 @@ import CartContext from "./CartContext";
 
 const CartProvider = ({ children }) => {
   const [show, setShow] = useState(false);
-
+  const [token, setToken] = useState(null)
+  
   const [cartItems, setCartItems] = useState([]);
   const userEmail = localStorage.getItem("userEmail");
 
@@ -27,7 +28,7 @@ const CartProvider = ({ children }) => {
   }
 
   return (
-    <CartContext.Provider value={{ show, setShow ,addItem, cartItems, setCartItems }}>
+    <CartContext.Provider value={{ setToken,show, setShow ,addItem, cartItems, setCartItems }}>
       {children}
     </CartContext.Provider>
   );

@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import CartContext from "../../store/CartContext";
 const Header = () => {
-  const { cartItems, setShow } = useContext(CartContext);
-
+  const {  cartItems, setShow } = useContext(CartContext);
   return (
     <>
       <header className=" d-flex p-2 justify-content-around header ">
@@ -29,11 +28,11 @@ const Header = () => {
               Contact Us
             </Link>
           </button>
-          <button className=" btn">
-            <Link to="/login" id="link">
-              LOGIN
-            </Link>
-          </button>
+            <button className=" btn">
+              <Link to="/login" id="link">
+                LOGIN
+              </Link>
+            </button>
         </div>
         <div
           onClick={() => setShow(true)}

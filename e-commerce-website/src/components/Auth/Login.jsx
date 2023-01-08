@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import CartContext from '../../store/CartContext';
 
 const Login = () => {
     const navigate = useNavigate()
@@ -8,6 +9,7 @@ const Login = () => {
      email: "",
      password: "",
    });
+   const {setToken} = useContext(CartContext)
 
    const handleChange = (e) => {
      const { placeholder, value } = e.target;
@@ -46,6 +48,7 @@ const Login = () => {
    })
    .then((data) => {
        localStorage.setItem("token", data.idToken);
+       setToken(data.idToken)
        navigate('/store')
    })
    .catch((err) => console.log(err.message));
@@ -85,7 +88,7 @@ const Login = () => {
           <label>Password</label>
         </div>
 
-        <input type="submit" className=" btn btn-secondary" />
+        <input type="submit" className=" btn btn-secondary" value='Login' />
       </form>
     </div>
   );
