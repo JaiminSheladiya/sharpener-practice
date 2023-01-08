@@ -12,7 +12,6 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    // console.log(userData)
     await axios.post("https://react-http-8f419-default-rtdb.firebaseio.com/ecom-users.json",userData);
   document.querySelector('form').reset()
   }

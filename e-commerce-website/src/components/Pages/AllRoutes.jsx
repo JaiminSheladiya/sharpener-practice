@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import Login from '../Auth/Login';
 import About from './About';
 import ContactUs from './ContactUs';
 import Home from './Home';
@@ -13,8 +14,9 @@ const AllRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/store" element={<Store />} />
         <Route path="/about" element={<About />} />
-        <Route path="/products/:id" element={<ProductPage/>} />
+        <Route path="/products/:id" element={<ProductPage />} />
         <Route path="/ContactUs" element={<ContactUs />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

@@ -29,6 +29,11 @@ const Header = () => {
               Contact Us
             </Link>
           </button>
+          <button className=" btn">
+            <Link to="/login" id="link">
+              LOGIN
+            </Link>
+          </button>
         </div>
         <div
           onClick={() => setShow(true)}
