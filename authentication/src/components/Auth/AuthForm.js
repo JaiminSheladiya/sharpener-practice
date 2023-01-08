@@ -21,10 +21,44 @@ const AuthForm = () => {
  setLoading(true);
     if (isLogin) {
       
+    fetch(
+      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAAXV5Vs62BDdmIhqYmBwYQ_embaTIn_o0",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email: creds.email,
+          password: creds.password,
+          returnSecureToken: true,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((res) => {
+      setLoading(false);
+      if (res.ok) {
+        return res.json()
+      } else {
+        res.json().then((data) => {
+          let errorMessage = "Authentication failed";
+          if (data && data.error && data.error.message)
+            errorMessage = data.error.message;
+          
+          throw new Error(errorMessage)
+        });
+      }
+    }).then(data =>{console.log(data.idToken);}).catch(err=>alert(err.message))
+      
+
+      
+
+      
+      
+
     } else {
      
       fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAAXV5Vs62BDdmIhqYmBwYQ_embaTIn_o0"
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="
         , {
           method: 'POST',
           body: JSON.stringify({
@@ -51,7 +85,6 @@ const AuthForm = () => {
         ;
     }
   }
-console.log(loading)
   return (
     <section className={classes.auth}>
       <h1>{isLogin ? "Login" : "Sign Up"}</h1>
