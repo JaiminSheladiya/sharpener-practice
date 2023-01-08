@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    
+    const navigate = useNavigate()
    const [userData, setUserData] = useState({
      email: "",
      password: "",
@@ -42,7 +43,8 @@ const Login = () => {
      }
    })
    .then((data) => {
-     localStorage.setItem("token", data.idToken);
+       localStorage.setItem("token", data.idToken);
+       navigate('/store')
    })
    .catch((err) => console.log(err.message));
       
