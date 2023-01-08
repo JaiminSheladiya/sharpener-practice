@@ -15,6 +15,8 @@ const Login = () => {
    };
    const handleSubmit =  (e) => {
        e.preventDefault();
+
+       localStorage.setItem('userEmail',userData.email)
        
  fetch(
    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAAXV5Vs62BDdmIhqYmBwYQ_embaTIn_o0",

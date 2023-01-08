@@ -5,6 +5,7 @@ import productsArr from '../productsList';
 const Container = () => {
   const { addItem } = useContext(CartContext)
   const navigate = useNavigate()
+
   return (
     <>
       <h1 className=" display-1 border-bottom">The Generics</h1>
