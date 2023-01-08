@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Switch, Route, Routes, useNavigate } from 'react-router-dom';
+import { Switch, Route, Routes, useNavigate ,redirect} from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import MainNavigation from './components/Layout/MainNavigation';
@@ -9,16 +9,18 @@ import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
 
 function App() {
-  
+  const token = localStorage.getItem('token')
   return (
     <>
       <MainNavigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
 
+        
         <Route path="/auth" element={<AuthPage />} />
 
-        <Route path="/profile" element={<UserProfile />} />
+        {token && <Route path="/profile" element={<UserProfile />} />}
+     <Route path='*' element={<HomePage />}></Route>
       </Routes>
     </>
   );

@@ -4,8 +4,8 @@ import { AuthContext } from '../store/AuthContext';
 import classes from './ProfileForm.module.css';
 
 const ProfileForm = () => {
-  const { token, setToken } = useContext(AuthContext)
-  console.log(token)
+  const token = localStorage.getItem("token");
+  
 const InputRef = useRef()
 
   
@@ -41,7 +41,7 @@ const InputRef = useRef()
       }
       
     }).then(data => {
-      setToken(data.idToken)
+      localStorage.setItem("token", data.idToken);
     }).catch(err => alert(err.message))
       
   }

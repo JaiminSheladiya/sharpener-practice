@@ -5,7 +5,8 @@ import { AuthContext } from '../store/AuthContext';
 import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
-  const { token , setToken } = useContext(AuthContext)
+  const token = localStorage.getItem("token");
+  
    const navigate = useNavigate()
   return (
     <header className={classes.header}>
@@ -22,7 +23,7 @@ const MainNavigation = () => {
           </li>
           <li>
             {token ? <button onClick={() => {
-              setToken(null)
+              localStorage.removeItem('token')
               navigate('/auth')
             }
             }>Logout</button> : <button onClick={() => navigate('/auth')}>Login</button>}

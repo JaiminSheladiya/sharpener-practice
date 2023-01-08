@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
-  const { token , setToken } = useContext(AuthContext)
   const [isLogin, setIsLogin] = useState(true);
   let [creds,setCreds] = useState({email : '',password : ''})
   const [loading , setLoading] = useState(false)
+  const token = localStorage.getItem("token");
 
 
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ const AuthForm = () => {
       }
       
     }).then(data => {
-      setToken(data.idToken)
+      localStorage.setItem('token',data.idToken)
     }).catch(err => alert(err.message))
       
 
