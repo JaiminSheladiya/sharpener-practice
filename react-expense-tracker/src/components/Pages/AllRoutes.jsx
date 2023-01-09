@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import {AuthContext} from '../../context/AuthContext';
 import Login from '../Auth/Login';
 import Signup from '../Auth/Signup';
 import Home from './Home'
 
 const AllRoutes = () => {
+    const { isLogin } = useContext(AuthContext)
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-          <Route path="/auth" element={<Signup />} />
+    <Route path="/auth" element={isLogin?<Login /> : <Signup />} />
     </Routes>
   );
 }
