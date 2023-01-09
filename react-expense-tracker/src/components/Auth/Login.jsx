@@ -31,8 +31,8 @@ const Login = () => {
               returnSecureToken: true,
             }
           );
-
-            if(res.status==200) console.log(res.status)
+            
+           localStorage.setItem("idToken" , res.data.idToken);
           toast("User Login successfully");
         navigate("/");
           
