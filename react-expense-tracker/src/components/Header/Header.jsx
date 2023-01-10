@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
 import { Link } from "react-router-dom";
-// import CartContext from "../../store/CartContext";
+import { AuthContext } from "../../context/AuthContext";
 const Header = () => {
-  // const {  cartItems, setShow } = useContext(CartContext);
+  const { IdToken ,setIdToken } = useContext(AuthContext)
+  console.log(IdToken)
   return (
     <>
       <header className=" d-flex p-2 justify-content-around header ">
@@ -28,23 +29,22 @@ const Header = () => {
               Contact Us
             </Link>
           </button>
-            <button className=" btn">
-              <Link to="/auth" id="link">
+          <button className=" btn">
+            {!IdToken ? <Link to="/auth" id="link">
                 LOGIN
-              </Link>
+            </Link> : 
+              <div onClick={() => {
+                localStorage.removeItem("idToken");
+                localStorage.removeItem("userEmail");
+                setIdToken(null)
+              }}>
+                LOGOUT
+              </div>
+              }
+              
           </button>
         </div>
-        {/* <div
-          onClick={() => setShow(true)}
-          className="btn d-flex gap-2 text-white bg-gradient"
-        >
-          <HiShoppingCart
-            style={{ height: "25px", marginTop: "2px", width: "25px" }}
-          />
-          {cartItems.length}
-        </div> */}
       </header>
-      {/* <HeadText /> */}
     </>
   );
 };

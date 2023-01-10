@@ -37,7 +37,7 @@ const Signup = () => {
       );
 
         toast("User created successfully");
-        setIsLogin(true)
+      setIsLogin(true)
     } catch (e) {;
         toast(e.response.data.error.message)
     }

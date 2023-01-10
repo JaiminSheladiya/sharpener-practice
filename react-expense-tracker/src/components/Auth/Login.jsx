@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../context/AuthContext';
-import VarifyEmail from './VarifyEmail';
 
 const Login = () => {
   const navigate = useNavigate()
@@ -12,7 +11,7 @@ const Login = () => {
      password: "",
    });
 
-   const { setIsLogin } = useContext(AuthContext);
+   const {  setIdToken, setIsLogin } = useContext(AuthContext);
   
   
    const handleChange = (e) => {
@@ -33,7 +32,8 @@ const Login = () => {
             }
           );
             
-           localStorage.setItem("idToken" , res.data.idToken);
+          localStorage.setItem("idToken", res.data.idToken);
+          setIdToken(res.data.idToken)
           toast("User Login successfully");
         navigate("/VarifyEmail");
           
@@ -41,7 +41,6 @@ const Login = () => {
           toast(e.response.data.error.message);
         }
         document.querySelector("form").reset();
-      //  console.log(userData);
      };
 
   return (
