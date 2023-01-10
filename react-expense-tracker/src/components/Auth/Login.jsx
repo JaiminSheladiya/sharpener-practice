@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../context/AuthContext';
+import VarifyEmail from './VarifyEmail';
 
 const Login = () => {
   const navigate = useNavigate()
@@ -34,7 +35,7 @@ const Login = () => {
             
            localStorage.setItem("idToken" , res.data.idToken);
           toast("User Login successfully");
-        navigate("/");
+        navigate("/VarifyEmail");
           
         } catch (e) {
           toast(e.response.data.error.message);
