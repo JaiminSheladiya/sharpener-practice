@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import CartContext from '../../store/CartContext';
@@ -47,7 +46,7 @@ const Login = () => {
      }
    })
    .then((data) => {
-       localStorage.setItem("token", data.idToken);
+       localStorage.setItem("idToken", data.idToken);
        setToken(data.idToken)
        navigate('/store')
    })

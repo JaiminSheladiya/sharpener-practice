@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import CartContext from "../../store/CartContext";
 const CartItems = () => {
-     const { cartItems} = useContext(CartContext);
+     const { cartItems,deleteItem} = useContext(CartContext);
   return (
     <>
       <div className=" d-flex justify-content-around">
@@ -25,7 +25,12 @@ const CartItems = () => {
               <p style={{ marginLeft: "140px" }}>{e.quantity}</p>
             </div>
             <div style={{ position: "absolute", right: "10px", top: "40px" }}>
-              <button className="btn btn-danger btn-sm">REMOVE</button>
+              <button
+                className="btn btn-danger btn-sm"
+                onClick={() => deleteItem(e._id)}
+              >
+                REMOVE
+              </button>
             </div>
           </div>
         ))}

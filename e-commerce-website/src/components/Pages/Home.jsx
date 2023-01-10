@@ -39,13 +39,7 @@ const Home = () => {
             </tr>
           ))}
         </tbody>
-        {/* {tours.map((e, i) => (
-          <div key={i} className='d-flex justify-content-between border'>
-            <p>{e.date}</p>
-            <p>{e.city}</p>
-            <p>{e.place}</p>
-          </div>
-        ))} */}
+    
       </Table>
     </div>
   );

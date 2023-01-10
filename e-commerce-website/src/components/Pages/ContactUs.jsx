@@ -7,7 +7,6 @@ const ContactUs = () => {
   const handleChange = (e) => {
     const { placeholder, value } = e.target
     setUserData({ ...userData, [placeholder]: value })
-    // console.log(userData)
   }
   const handleSubmit = async (e) => {
     e.preventDefault()

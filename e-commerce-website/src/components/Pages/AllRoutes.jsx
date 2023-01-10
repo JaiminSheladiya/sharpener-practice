@@ -1,24 +1,25 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Login from '../Auth/Login';
-import About from './About';
-import ContactUs from './ContactUs';
-import Home from './Home';
-import PrivateRoute from './PrivateRoute';
-import ProductPage from './ProductPage';
-import Store from './Store'
+const Login = React.lazy(() => import("../Auth/Login"));
+const About = React.lazy(() => import("./About"));
+const ContactUs = React.lazy(() => import("./ContactUs"));
+const Home = React.lazy(() => import("./Home"));
+const PrivateRoute = React.lazy(() => import("./PrivateRoute"));
+const Store = React.lazy(() => import("./Store")); 
+
 
 const AllRoutes = () => {
-  let token = localStorage.getItem('token')
+  let token = localStorage.getItem('idToken')
   return (
     <div>
+      
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path='/store' element={<PrivateRoute><Store /></PrivateRoute>} />
-        <Route path="/about" element={<About />} />
-        <Route path="/ContactUs" element={<ContactUs />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Login />} />
+        <Route path="/" element={<React.Suspense fallback={<div className='spinner-border m-5'></div>}><Home /></React.Suspense>} />
+        <Route path='/store' element={<React.Suspense fallback={<div className='spinner-border m-5'></div>}><PrivateRoute><Store /></PrivateRoute></React.Suspense> } />
+        <Route path="/about" element={<React.Suspense fallback={<div className='spinner-border m-5'></div>}><About /></React.Suspense> } />
+        <Route path="/ContactUs" element={<React.Suspense fallback={<div className='spinner-border m-5'></div>}> <ContactUs /></React.Suspense>} />
+        <Route path="/login" element={<React.Suspense fallback={<div className='spinner-border m-5'></div>}><Login /></React.Suspense> } />
+        <Route path="*" element={<React.Suspense fallback={<div className='spinner-border m-5'></div>}><Login /></React.Suspense> } />
       </Routes>
     </div>
   );
