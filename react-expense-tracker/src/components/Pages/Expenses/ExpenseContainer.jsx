@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { expenseContext } from '../../../context/ExpenseContext';
 
-const ExpenseContainer = ({ expenseArr }) => {
-  console.log(expenseArr);
+const ExpenseContainer = () => {
+    const {expenses} = useContext(expenseContext)
     return <div>
         {
-            expenseArr.map((e, i) => 
+            expenses.map((e, i) => 
                 <div className=' d-flex justify-content-around m-2 p-2 shadow' key={i}>
                     <p>Amount - {e.Amount}</p>
                     <p>Description - { e.Description}</p>

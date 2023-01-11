@@ -6,14 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import "react-toastify/dist/ReactToastify.css";
 import AuthProvider from './context/AuthContext';
+import ExpenseProvider from './context/ExpenseContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <AuthProvider>
+  <AuthProvider>
+    <ExpenseProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </AuthProvider>
+    </ExpenseProvider>
+  </AuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
