@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 const Header = () => {
   const { IdToken ,setIdToken } = useContext(AuthContext)
-  console.log(IdToken)
   return (
     <>
       <header className=" d-flex p-2 justify-content-around header ">
@@ -15,8 +14,8 @@ const Header = () => {
             </Link>
           </button>
           <button className=" btn">
-            <Link to="/store" id="link">
-              STORE
+            <Link to="/expenses" id="link">
+              EXPENSES
             </Link>
           </button>
           <button className=" btn text-white">
