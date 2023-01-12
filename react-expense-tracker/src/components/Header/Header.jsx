@@ -1,9 +1,12 @@
 import React, { useContext, useState } from "react";
 import { HiShoppingCart } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { authActions } from "../../store/AuthSlicer";
 const Header = () => {
-  const { IdToken ,setIdToken } = useContext(AuthContext)
+  
+  const IdToken = useSelector((state) => state.auth.IdToken);
+  const dispatch = useDispatch()
   return (
     <>
       <header className=" d-flex p-2 justify-content-around header ">
@@ -33,9 +36,7 @@ const Header = () => {
                 LOGIN
             </Link> : 
               <div onClick={() => {
-                localStorage.removeItem("idToken");
-                localStorage.removeItem("userEmail");
-                setIdToken(null)
+                dispatch(authActions.logout())
               }}>
                 LOGOUT
               </div>

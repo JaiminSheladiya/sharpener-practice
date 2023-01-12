@@ -31,7 +31,6 @@ getPreviousValues();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userData);
     let idToken = localStorage.getItem("idToken");
     try {
       const res = await axios.post(
@@ -46,7 +45,6 @@ getPreviousValues();
       toast("Profile Updated");
       document.querySelector("form").reset();
     } catch (e) {
-      console.log(e);
       toast(e.response.data.error.message);
     }
   };

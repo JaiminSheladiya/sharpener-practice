@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import {} from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../context/AuthContext";
+import { authActions } from "../../store/AuthSlicer";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -12,7 +13,9 @@ const Signup = () => {
     password: "",
     confirmpassword: "",
   });
-   const { setIsLogin } = useContext(AuthContext);
+
+  const dispatch = useDispatch()
+  
 
 
   const handleChange = (e) => {
@@ -21,7 +24,6 @@ const Signup = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    localStorage.setItem("userEmail", userData.email);
 
     if (userData.confirmpassword != userData.password)
       return toast("Please check confirm password..");
@@ -37,7 +39,7 @@ const Signup = () => {
       );
 
         toast("User created successfully");
-      setIsLogin(true)
+      dispatch(authActions.loginPage());
     } catch (e) {;
         toast(e.response.data.error.message)
     }
@@ -91,7 +93,10 @@ const Signup = () => {
           className=" btn btn-secondary"
           value="CREATE ACCOUNT"
         />
-        <button className=" m-3 text-primary border-0" onClick={()=>setIsLogin(true)}>
+        <button
+          className=" m-3 text-primary border-0"
+          onClick={() => dispatch(authActions.loginPage())}
+        >
           Already having account?
         </button>
       </form>
