@@ -4,7 +4,8 @@ import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import Notification from "./components/UI/Notification";
-import { uiActions } from "./store/ui-slice";
+import { fetchCartData, sendCartData } from "./store/cart-actions";
+
 
 function App() {
   const cartIsVisible = useSelector((state) => state.ui.cartIsVisible);
@@ -13,43 +14,12 @@ function App() {
   const notification = useSelector((state) => state.ui.notification);
 
   useEffect(() => {
-    const sendCartData = async () => {
-      dispatch(
-        uiActions.showNotification({
-          status: "pending",
-          title: "Sending...",
-          message: "Sending cart data.",
-        })
-      );
-      const res = await fetch(
-        "https://react-http-8f419-default-rtdb.firebaseio.com/cart.json",
-        {
-          method: "PUT",
-          body: JSON.stringify(cart),
-        }
-      );
+    dispatch(fetchCartData())
+  },[dispatch])
 
-      if (!res.ok) {
-        dispatch(
-          uiActions.showNotification({
-            status: "error",
-            title: "Error!",
-            message: "Sending cart data failed.",
-          })
-        );
-      }
+  useEffect(() => {
 
-      dispatch(
-        uiActions.showNotification({
-          status: "success",
-          title: "Success!",
-          message: "Sent cart data successfully!",
-        })
-      );
-
-      const data = await res.json();
-    };
-    sendCartData();
+    dispatch(sendCartData(cart))
   }, [cart, dispatch]);
 
   return (
